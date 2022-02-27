@@ -1,0 +1,28 @@
+super + {g,e,r,c,a,s}
+    {brave,thunderbird,st ranger,code,pavucontrol,spotify}
+
+super + shit + s
+	spotify
+super + alt + p
+	flameshot screen -r > /home/arif/pic/screenshots/$(date +%d.%m.%Y-%H:%M:%S).png
+
+super + shift + Print
+ 	flameshot gui -p /home/arif/pic/screenshots/
+
+XF86Audio{Prev,Next,Stop,Play}
+	playerctl {previous,next, pause, play}; pkill -RTMIN+10 dwmblocks
+
+XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5% && pkill -RTMIN+10 dwmblocks 
+
+button{10,11}
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5% && pkill -RTMIN+10 dwmblocks 
+
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle; pkill -RTMIN+10 dwmblocks
+
+XF86MonBrightnessDown
+	xbacklight -dec 15
+
+XF86MonBrightnessUp
+	xbacklight -inc 15

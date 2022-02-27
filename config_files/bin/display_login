@@ -1,0 +1,19 @@
+#!/bin/bash
+HDMI_CONNECTED=$(xrandr | sed -n '/DisplayPort-2 connected/p') 
+DP_CONNECTED=$(xrandr | sed -n '/DisplayPort-1 connected/p') 
+#test
+
+if [ -n "$DP_CONNECTED" ]; then
+    if [ -n "$HDMI_CONNECTED" ]; then 
+        xrandr --output DisplayPort-1 --primary --mode 1920x1080 --left-of DisplayPort-2 --output DisplayPort-2 --rotate right --output eDP --off
+    else
+        xrandr --output DisplayPort-1 --primary --mode 1920x1080 --left-of eDP
+    fi
+elif [ -n "$HDMI_CONNECTED" ]; then
+    if [ -n "$DP_CONNECTED" ]; then
+        xrandr --output DisplayPort-2 --primary --left-of eDP --auto 
+    fi
+fi
+
+xrdb /root/.Xresources
+wmname LG3D

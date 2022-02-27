@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Volumecontrol if dwmblocks is being used #
+case $BUTTON in
+	3) pactl set-sink-volume @DEFAULT_SINK@ -5%; pkill -RTMIN+10 dwmblocks ;;
+	2) amixer set Master toggle; pkill -RTMIN+10 dwmblocks ;; 
+	1) pactl set-sink-volume @DEFAULT_SINK@ +5%; pkill -RTMIN+10 dwmblocks ;;
+esac
+
+# displays the current volume of the master volume outout in dwm (or terminal) # 
+
+vol="$(pamixer --get-volume)"
+
+if [ "$vol" -gt "60" ]; then
+	icon=""
+elif [ "$vol" -lt "30" ]; then
+	icon=""
+else
+	icon=""
+fi
+
+echo "$icon $vol%"

@@ -1,0 +1,9 @@
+sxhkd & 
+twmnd &
+picom -b &
+nitrogen --restore &
+dwmblocks &
+wired &
+middle_mouse &
+exec dwm 
+

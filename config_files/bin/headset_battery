@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#
+# Using the following program to find out how much battery my headset has left
+#
+# https://github.com/Sapd/HeadsetControl
+#
+#
+
+battery=$(headsetcontrol -b | grep Battery | awk -F " " '{print $2}')
+
+if [[ $battery != 0% ]]; then
+	echo " $battery"
+else
+	echo " disconnected"
+fi

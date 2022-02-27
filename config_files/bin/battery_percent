@@ -1,0 +1,15 @@
+#!/bin/bash
+PERCENTAGE=$(cat /sys/class/power_supply/BAT0/capacity)
+STATE=$(cat /sys/class/power_supply/BAT0/status)
+SYMBOL=""
+
+
+if [[ $STATE == "Full" ]]; then
+	SYMBOL=""
+elif [[ $STATE == "Charging" ]]; then
+	SYMBOL=""
+else
+	SYMBOL=""
+fi
+
+echo "$SYMBOL $PERCENTAGE%"
